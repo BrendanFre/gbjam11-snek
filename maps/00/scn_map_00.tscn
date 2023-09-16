@@ -1,17 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://maps/infiltration-start.png" type="Texture" id=1]
 [ext_resource path="res://actors/ship/ship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://maps/00/scn_map_00.gd" type="Script" id=3]
 [ext_resource path="res://actors/snek/snek.tscn" type="PackedScene" id=4]
-
-[sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 43, 176, 12, 176, 13, 66, 47, 64, 11, 0, -4, 4 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ) ]
-outlines = [ PoolVector2Array( 11, 0, 47, 64, 43, 176, 12, 176, 13, 66, -4, 4 ) ]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 23.5, 10 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -52,22 +44,14 @@ player = ExtResource( 4 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
-navpoly = SubResource( 1 )
-
 [node name="PlayerShip" parent="Navigation2D" instance=ExtResource( 2 )]
 scale = Vector2( 2, 2 )
 landingPosition = Vector2( 22, 168 )
-path_to_find = NodePath("../NavigationPolygonInstance")
 
 [node name="Camera2D" type="Camera2D" parent="Navigation2D/PlayerShip"]
 current = true
 limit_left = 0
 limit_top = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 23.5, 186 )
-shape = SubResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 4 )

@@ -1,5 +1,6 @@
 extends TextureRect
 export var player : PackedScene
+signal introduction
 
 
 # Declare member variables here. Examples:
@@ -16,4 +17,5 @@ func _on_PlayerShip_player_exit():
 	var player_scene = player.instance()
 	player_scene.set_global_position(Vector2(22, 168))
 	add_child(player_scene)
+	emit_signal('introduction')
 	player_scene.make_priority()
